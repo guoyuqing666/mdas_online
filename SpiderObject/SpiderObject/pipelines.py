@@ -17,3 +17,33 @@ class TextPipeline(object):
             return item
         else:
             return DropItem('Missing Text')
+
+
+class SimuPipeline(object):
+    def open_spider(self, spider):
+        self.fo = open('50亿以上的私募证券基金公司.csv', 'a')
+        data = "{},{},{}\n".format('私募基金管理人名称', '登记时间', '登记编号')
+        self.fo.write(data)
+
+    def process_item(self, item, spider):
+        data = "{},{},{}\n".format(item['MNGCNAME'], item['REGISTDATE'], item['MNGID'])
+        self.fo.write(data)
+        return item
+
+    def close_spider(self, spider):
+        self.fo.close()
+
+
+class Simu100Pipeline(object):
+    def open_spider(self, spider):
+        self.fo = open('100亿以上的私募证券基金公司.csv', 'a')
+        data = "{},{},{}\n".format('私募基金管理人名称', '登记时间', '登记编号')
+        self.fo.write(data)
+
+    def process_item(self, item, spider):
+        data = "{},{},{}\n".format(item['MNGCNAME'], item['REGISTDATE'], item['MNGID'])
+        self.fo.write(data)
+        return item
+
+    def close_spider(self, spider):
+        self.fo.close()
