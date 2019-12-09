@@ -69,7 +69,7 @@ ITEM_PIPELINES = {
     'SpiderObject.pipelines.TextPipeline':300,
     'scrapy.pipelines.files.FilesPipeline': 1,
 }
-FILES_STORE = 'D:/test/scrapy'
+FILES_STORE = './scrapy'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

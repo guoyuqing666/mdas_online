@@ -2,7 +2,7 @@
 import scrapy
 import datetime
 
-from mySpider.items import ExamplesItem
+from ..items import ExamplesItem
 
 
 class ItcastSpider(scrapy.Spider):
