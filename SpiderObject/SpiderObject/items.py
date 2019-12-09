@@ -18,3 +18,8 @@ class QuoteItem(scrapy.Item):
 class ExamplesItem(scrapy.Item):
     file_urls=scrapy.Field()
     files=scrapy.Field()
+
+class SimuItem(scrapy.Item):
+    MNGCNAME = scrapy.Field()
+    REGISTDATE = scrapy.Field()
+    MNGID = scrapy.Field()

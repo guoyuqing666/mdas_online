@@ -17,6 +17,7 @@ NEWSPIDER_MODULE = 'SpiderObject.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'SpiderObject (+http://www.yourdomain.com)'
+USER_AGENT = 'SiMuHui/20180207 (iPhone; iOS 13.2; Scale/2.00)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -34,7 +35,7 @@ ROBOTSTXT_OBEY = True
 
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
-
+COOKIES = 'JSESSIONID=t7zZxnTZDh7U4-qMF9tpLwyEYmNt3eAQKBougD4ClifbAYuDWkBP!1533519278'
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
 
@@ -67,8 +68,19 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
    #'SpiderObject.pipelines.SpiderobjectPipeline': 300,
     'SpiderObject.pipelines.TextPipeline':300,
+    'SpiderObject.pipelines.SimuPipeline':300,
+    'SpiderObject.pipelines.Simu100Pipeline':300,
     'scrapy.pipelines.files.FilesPipeline': 1,
 }
+DEFAULT_REQUEST_HEADERS = {
+        'Host': 'www.yhzqjj.com',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Cookie': 'JSESSIONID=t7zZxnTZDh7U4-qMF9tpLwyEYmNt3eAQKBougD4ClifbAYuDWkBP!1533519278',
+        'Accept-Language': 'zh-Hans-CN;q=1, ja-JP;q=0.9n',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+        'Connection': 'keep-alive',
+    }
 FILES_STORE = './scrapy'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
