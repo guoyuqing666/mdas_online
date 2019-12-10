@@ -67,9 +67,9 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
    #'SpiderObject.pipelines.SpiderobjectPipeline': 300,
     'SpiderObject.pipelines.TextPipeline':300,
-    'scrapy.pipelines.files.FilesPipeline': 1,
+    'SpiderObject.pipelines.MyfilesPipeline':1,
 }
-FILES_STORE = './scrapy'
+FILES_STORE = './scrapyFile'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
