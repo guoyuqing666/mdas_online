@@ -50,12 +50,13 @@ class stcnPipeline(object):
         if not os.path.exists(file_dir):
             os.makedirs(file_dir)
         self.file=open(store_file,'w')
-        data = "{},{},{}，{}\n".format('公告标题', '发布日期', '文章链接', '文章内容')
+        data = "{},{},{},{},{},{}\n".format('公告标题', '发布日期', '文章链接', '文章内容','关注同业客户出现频次','关注预测信息出现频次')
         self.file.write(data)
 
     def process_item(self,item,spider):
-
-        self.file.write("{},{},{},{}\n".format(item['newsTitle'], item['newsDate'], item['newsLink'], item['newsContent']))
+        if len(item['newsContent']) > 300:
+            item['newsContent'] = item['newsContent'][0:300].rstrip() + '...'
+        self.file.write("{},{},{},{},{},{}\n".format(item['newsTitle'], item['newsDate'], item['newsLink'], item['newsContent'],item['newsClientCapture'],item['newsActionCapture']))
         return item
 
     def close_spider(self,spider):

@@ -68,4 +68,25 @@ class StcnSpider(scrapy.Spider):
         print(newsContent)
         item = response.meta['item']
         item['newsContent'] = newsContent
+        # 对标题和内容进行关键词出现频次统计
+        newsClientNo=0
+        newsActionNo=0
+        keywordsClient=['平安','车企','药品']
+        keywordsAction=['IPO','融资','涨幅','增发']
+        for keywordClient in keywordsClient:
+            countTempClient=count_word(keywordClient,newsContent)
+            newsClientNo=newsClientNo+countTempClient
+
+        for keywordAction in keywordsAction:
+            countTempAction=count_word(keywordAction,newsContent)
+            newsActionNo=newsActionNo+countTempAction
+
+
+        item['newsClientCapture'] = newsClientNo
+        item['newsActionCapture'] = newsActionNo
         yield item
+
+def count_word(keyword, content):
+    import re
+    return len(re.findall(r'%s' % keyword, content))
+

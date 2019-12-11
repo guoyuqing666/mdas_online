@@ -29,6 +29,8 @@ class stcnNews(scrapy.Item):
     newsDate =scrapy.Field()
     newsLink =scrapy.Field()
     newsContent =scrapy.Field()
+    newsClientCapture =scrapy.Field()
+    newsActionCapture=scrapy.Field()
 
 class SimuItem(scrapy.Item):
     MNGCNAME = scrapy.Field()
