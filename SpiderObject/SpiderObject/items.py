@@ -14,3 +14,23 @@ class QuoteItem(scrapy.Item):
     text =scrapy.Field()
     author=scrapy.Field()
     tags = scrapy.Field()
+
+class ExamplesItem(scrapy.Item):
+    file_urls=scrapy.Field()
+    files=scrapy.Field()
+
+class SimuItem(scrapy.Item):
+    MNGCNAME = scrapy.Field()
+    REGISTDATE = scrapy.Field()
+    MNGID = scrapy.Field()
+
+class stcnNews(scrapy.Item):
+    newsTitle =scrapy.Field()
+    newsDate =scrapy.Field()
+    newsLink =scrapy.Field()
+    newsContent =scrapy.Field()
+
+class SimuItem(scrapy.Item):
+    MNGCNAME = scrapy.Field()
+    REGISTDATE = scrapy.Field()
+    MNGID = scrapy.Field()

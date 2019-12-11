@@ -44,6 +44,8 @@ ROBOTSTXT_OBEY = True
 #   'Accept-Language': 'en',
 #}
 
+FILES_STORE = './scrapyFile'
+
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
@@ -66,7 +68,14 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    #'SpiderObject.pipelines.SpiderobjectPipeline': 300,
-    'SpiderObject.pipelines.TextPipeline':300,
+    'SpiderObject.pipelines.MyfilesPipeline': 300,
+    'SpiderObject.pipelines.TextPipeline':310,
+    'SpiderObject.pipelines.stcnPipeline':320,
+    'SpiderObject.pipelines.SimuPipeline':330,
+    'SpiderObject.pipelines.Simu100Pipeline':340,
+
+
+
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

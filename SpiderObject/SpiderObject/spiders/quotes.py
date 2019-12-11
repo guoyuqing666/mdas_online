@@ -7,6 +7,9 @@ class QuotesSpider(scrapy.Spider):
     name = 'quotes'
     allowed_domains = ['quotes.toscrape.com']
     start_urls = ['http://quotes.toscrape.com/']
+    custom_settings = {
+        'ITEM_PIPELINES': {'SpiderObject.pipelines.TextPipeline':310,}
+    }
 
     def parse(self, response):
         quotes =response.css('.quote')
