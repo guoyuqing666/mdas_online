@@ -2,6 +2,6 @@
 SpiderObject/.idea/
 SpiderObject/scrapyFile/
 SpiderObject/scrapy.cfg
-SpiderObject/SpiderObject/__pycache__/
+SpiderObject/SpiderObject/__pycache__/*
 SpiderObject/SpiderObject/stcn/
-SpiderObject/SpiderObject/spiders/__pycache__/
+SpiderObject/SpiderObject/spiders/__pycache__/*
