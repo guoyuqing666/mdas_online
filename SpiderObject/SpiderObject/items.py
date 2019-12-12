@@ -36,3 +36,8 @@ class SimuItem(scrapy.Item):
     MNGCNAME = scrapy.Field()
     REGISTDATE = scrapy.Field()
     MNGID = scrapy.Field()
+
+class jiJinItem(scrapy.Item):
+    file_url = scrapy.Field()
+    file = scrapy.Field()
+    fileName = scrapy.Field()

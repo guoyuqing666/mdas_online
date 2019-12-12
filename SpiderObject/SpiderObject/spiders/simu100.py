@@ -29,7 +29,7 @@ class Simu100Spider(scrapy.Spider):
         print('开始爬取数据第' + str(self.current_page) + '页的数据》》》》》》》》》》》》》》》》》》')
         data = {
             'count': '30',
-            'fundtype': '1',
+            'fundtype': '3',
             'page': str(self.current_page),
             'scalecode': '4'
         }
@@ -52,7 +52,7 @@ class Simu100Spider(scrapy.Spider):
                 self.current_page += 1
                 data = {
                     'count': '30',
-                    'fundtype': '1',
+                    'fundtype': '3',
                     'page': str(self.current_page),
                     'scalecode': '4'
                 }
