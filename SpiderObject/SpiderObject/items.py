@@ -37,7 +37,14 @@ class SimuItem(scrapy.Item):
     REGISTDATE = scrapy.Field()
     MNGID = scrapy.Field()
 
+
 class jiJinItem(scrapy.Item):
     file_url = scrapy.Field()
     file = scrapy.Field()
     fileName = scrapy.Field()
+
+class dzhNews(scrapy.Item):
+    newsTitle =scrapy.Field()
+    newsLink =scrapy.Field()
+    newsContent =scrapy.Field()
+
