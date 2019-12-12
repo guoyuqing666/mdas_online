@@ -48,3 +48,18 @@ class dzhNews(scrapy.Item):
     newsLink =scrapy.Field()
     newsContent =scrapy.Field()
 
+class ZsNoticeItem(scrapy.Item):
+    file_urls = scrapy.Field()
+    files = scrapy.Field()
+    name = scrapy.Field()
+    title = scrapy.Field()
+    rows=scrapy.Field()
+
+class CnstockItem(scrapy.Item):
+    announTitle =scrapy.Field()
+    announDate =scrapy.Field()
+    announLink =scrapy.Field()
+    announContent =scrapy.Field()
+
+
+

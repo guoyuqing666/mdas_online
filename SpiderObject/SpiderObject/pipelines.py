@@ -110,3 +110,47 @@ class SimujijinPipeline(FilesPipeline):
             # os.path.join('D:\pythonSpider\scrapy\Simu100', ''.join([file_name]))
         print(path)
         return path
+
+class ZsxiazaiPipeline(FilesPipeline):
+    downloadBaseUrl = 'http://xinpi.cs.com.cn/new/file/'
+
+    def get_media_requests(self, item, info):
+        for data in item['rows']:
+            yield scrapy.Request(self.downloadBaseUrl + data['cell'][4], meta={'data': data})
+
+    def file_path(self, request, response=None, info=None):
+        data = request.meta['data']
+        today = datetime.date.today()
+        novel_name = "/zs/"+today.strftime('%Y%m%d')+ '/'+today.strftime('%Y%m%d')+'/'+data['cell'][3]+data['cell'][4][data['cell'][4].index('.'):]
+        return '%s' % novel_name
+
+    def item_completed(self, results, item, info):
+        return item
+
+
+class CnstockPipeline(object):
+
+    def __init__(self):
+        today = datetime.date.today()
+        store_path = os.path.dirname(__file__) + '\\cnstock\\' + today.strftime('%Y%m%d') + '\\'
+        store_file = os.path.dirname(__file__) + '\\cnstock\\' + today.strftime('%Y%m%d') + '\\' + today.strftime(
+            '%Y%m%d') + '_cnstock.csv'
+        file_dir = os.path.split(store_file)[0]
+        print(file_dir)
+
+        if not os.path.exists(file_dir):
+            os.makedirs(file_dir)
+
+        self.file = open(store_file, 'w')
+        data = "{},{},{},{}\n".format('公告标题', '发布日期', '文章链接', '文章内容')
+        self.file.write(data)
+
+    def process_item(self, item, spider):
+        if len(item['announContent']) > 300:
+            item['announContent'] = item['announContent'][0:300].rstrip() + '...'
+        self.file.write(
+            "{},{},{},{}\n".format(item['announTitle'], item['announDate'], item['announLink'], item['announContent']))
+        return item
+
+    def close_spider(self, spider):
+        self.file.close()
