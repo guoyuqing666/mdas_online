@@ -5,3 +5,8 @@ SpiderObject/scrapy.cfg
 SpiderObject/SpiderObject/__pycache__/*
 SpiderObject/SpiderObject/stcn/
 SpiderObject/SpiderObject/spiders/__pycache__/*
+SpiderObject/dzh.csv
+SpiderObject/50亿以上的私募证券基金公司.csv
+SpiderObject/100亿以上的私募证券基金公司.csv
+SpiderObject/SpiderObject/cnstock/*
+
