@@ -90,3 +90,23 @@ class Simu100Pipeline(object):
 
     def close_spider(self, spider):
         self.fo.close()
+
+class SimujijinPipeline(FilesPipeline):
+    def get_media_requests(self, item, info):
+        url = item['file_url'][0]
+        print('开始下载文件》》》》》》》》》》》')
+        print(str(url))
+        yield scrapy.Request(str(url), meta={'item': item})
+    def file_path(self, request, response=None, info=None):
+        """
+        重命名模块
+        :param request:
+        :param response:
+        :param info:
+        :return:path
+        """
+        item = request.meta['item']
+        path = item['fileName']
+            # os.path.join('D:\pythonSpider\scrapy\Simu100', ''.join([file_name]))
+        print(path)
+        return path

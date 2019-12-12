@@ -73,7 +73,7 @@ ITEM_PIPELINES = {
     'SpiderObject.pipelines.stcnPipeline':320,
     'SpiderObject.pipelines.SimuPipeline':330,
     'SpiderObject.pipelines.Simu100Pipeline':340,
-
+    'SpiderObject.pipelines.SimujijinPipeline': 350,
 
 
 }
