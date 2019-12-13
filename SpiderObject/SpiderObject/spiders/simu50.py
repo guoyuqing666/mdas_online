@@ -9,16 +9,16 @@ class SiMu(scrapy.Spider):
     custom_settings = {
         'ITEM_PIPELINES': {'SpiderObject.pipelines.SimuPipeline':330,}
     }
-    headers = {
-        'Host': 'www.yhzqjj.com',
-        'Accept': '*/*',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Cookie': 'JSESSIONID=t7zZxnTZDh7U4-qMF9tpLwyEYmNt3eAQKBougD4ClifbAYuDWkBP!1533519278',
-        'Accept-Language': 'zh-Hans-CN;q=1, ja-JP;q=0.9n',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-        'Connection': 'keep-alive',
-        'User_Agent': 'SiMuHui/20180207 (iPhone; iOS 13.2; Scale/2.00)'
-    }
+    # headers = {
+    #     'Host': 'www.yhzqjj.com',
+    #     'Accept': '*/*',
+    #     'Accept-Encoding': 'gzip, deflate, br',
+    #     'Cookie': 'JSESSIONID=t7zZxnTZDh7U4-qMF9tpLwyEYmNt3eAQKBougD4ClifbAYuDWkBP!1533519278',
+    #     'Accept-Language': 'zh-Hans-CN;q=1, ja-JP;q=0.9n',
+    #     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+    #     'Connection': 'keep-alive',
+    #     'User_Agent': 'SiMuHui/20180207 (iPhone; iOS 13.2; Scale/2.00)'
+    # }
 
     def start_requests(self):
         #————————50亿以上管理规模——————————————
@@ -33,7 +33,7 @@ class SiMu(scrapy.Spider):
                 'scalecode': '5'
             }
             time.sleep(5)
-            yield scrapy.FormRequest(url=url, headers=self.headers, formdata=data, callback=self.parse)
+            yield scrapy.FormRequest(url=url, formdata=data, callback=self.parse)
 
     def parse(self, response):
         print('>>>>>>>>>>>>>>>>>>>>>>>开始解析数据》》》》》》》》》》》')

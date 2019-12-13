@@ -31,7 +31,7 @@ class MyfilesPipeline(FilesPipeline):
 
     def file_path(self, request, response=None, info=None):
         today = datetime.date.today()
-        path = '/qhjg/' + today.strftime('%Y%m%d') + '/' + today.strftime('%Y%m%d') + '_FutureDataDelsettle.xls'
+        path = '/qhjg/' + today.strftime('%Y%m%d') + '/' + today.strftime('%Y%m%d') + '_' + str(request).split("/")[-1][:-1]
         return path
 
 # class stcnPipeline(object):
