@@ -7,11 +7,15 @@
 
 import datetime
 import os
+import time
 import csv
 
 import scrapy
 from scrapy.exceptions import DropItem
 from scrapy.pipelines.files import FilesPipeline
+from .settings import FILES_STORE
+import zipfile
+
 
 class TextPipeline(object):
     def __init__(self):
@@ -92,24 +96,53 @@ class Simu100Pipeline(object):
         self.fo.close()
 
 class SimujijinPipeline(FilesPipeline):
+    temp_path = ''
     def get_media_requests(self, item, info):
         url = item['file_url'][0]
         print('开始下载文件》》》》》》》》》》》')
         print(str(url))
         yield scrapy.Request(str(url), meta={'item': item})
+
     def file_path(self, request, response=None, info=None):
-        """
-        重命名模块
-        :param request:
-        :param response:
-        :param info:
-        :return:path
-        """
+        # today = datetime.date.today()
         item = request.meta['item']
-        path = item['fileName']
-            # os.path.join('D:\pythonSpider\scrapy\Simu100', ''.join([file_name]))
-        print(path)
+        path = item['fileName'][0]
+        self.temp_path = path
         return path
+
+    def item_completed(self, results, item, info):
+        today = datetime.date.today()
+        zip_path = FILES_STORE + '/' + self.temp_path
+        print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+        print(zip_path)
+        db_file_path = FILES_STORE + '/' + '基金公司' + today.strftime('%Y%m%d')
+        if not os.path.exists(db_file_path):
+            os.mkdir(db_file_path)
+        zip_file = zipfile.ZipFile(zip_path)
+        print(zip_file)
+        zip_list = zip_file.namelist()  # 得到压缩包里所有文件
+        print(zip_list)
+        # print('文件名啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊')
+        for f in zip_list:
+            file = zip_file.extract(f, db_file_path)  # 循环解压文件到指定目录
+        zip_file.close()  # 关闭文件，必须有，释放内存
+
+class detailPipeline(object):
+    def open_spider(self, spider):
+        today = datetime.date.today()
+        store_file = FILES_STORE + '/' + '基金公司' + today.strftime('%Y%m%d') + '/' + today.strftime('%Y%m%d') + '_基金公司名称.csv'
+        self.fo = open(store_file, 'a')
+        data = "{},{}\n".format('基金名称', '基金管理人名称')
+        self.fo.write(data)
+
+    def process_item(self, item, spider):
+        data = "{},{}\n".format(item['fundsName'], item['mngName'])
+        self.fo.write(data)
+        return item
+
+    def close_spider(self, spider):
+        self.fo.close()
+
 
 class ZsxiazaiPipeline(FilesPipeline):
     downloadBaseUrl = 'http://xinpi.cs.com.cn/new/file/'
