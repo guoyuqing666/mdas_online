@@ -54,6 +54,7 @@ class ZsNoticeItem(scrapy.Item):
     name = scrapy.Field()
     title = scrapy.Field()
     rows=scrapy.Field()
+    time = scrapy.Field()
 
 class CnstockItem(scrapy.Item):
     announTitle =scrapy.Field()
