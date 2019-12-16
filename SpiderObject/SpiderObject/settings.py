@@ -69,13 +69,14 @@ FILES_STORE = './scrapyFile'
 ITEM_PIPELINES = {
    #'SpiderObject.pipelines.SpiderobjectPipeline': 300,
     'SpiderObject.pipelines.MyfilesPipeline': 300,
-    'SpiderObject.pipelines.TextPipeline':310,
-    'SpiderObject.pipelines.stcnPipeline':320,
-    'SpiderObject.pipelines.SimuPipeline':330,
-    'SpiderObject.pipelines.Simu100Pipeline':340,
+    'SpiderObject.pipelines.TextPipeline': 310,
+    'SpiderObject.pipelines.stcnPipeline': 320,
+    'SpiderObject.pipelines.SimuPipeline': 330,
+    'SpiderObject.pipelines.Simu100Pipeline': 340,
     'SpiderObject.pipelines.SimujijinPipeline': 350,
-    'SpiderObject.pipelines.ZsxiazaiPipeline':360,
+    'SpiderObject.pipelines.ZsxiazaiPipeline': 360,
     'SpiderObject.pipelines.CnstockPipeline': 370,
+    'SpiderObject.pipelines.detailPipeline': 380,
 
 
 }

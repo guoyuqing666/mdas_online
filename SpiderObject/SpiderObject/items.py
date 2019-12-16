@@ -61,5 +61,9 @@ class CnstockItem(scrapy.Item):
     announLink =scrapy.Field()
     announContent =scrapy.Field()
 
+class detailItem(scrapy.Item):
+    fundsName = scrapy.Field()
+    mngName = scrapy.Field()
+
 
 
