@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import zipfile
-import os
-import zipfile
-# import time
 import json
-import urllib
 from ..items import jiJinItem
 
 
@@ -41,20 +36,23 @@ class SimujijinSpider(scrapy.Spider):
         fileName = dict_json['responseResults']['fileName']
         url = 'https://www.yhzqjj.com/yhzqjjApp/yhwz/report/android/smhzip/' + fileName
         print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<' + url + '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-        item['fileName'] = fileName
+        item['fileName'] = [fileName]
         item['file_url'] = [url]
         return item
-    # def parse_zip(self, response):
-    #     print(response.body)
-        # # os.chdir('D:\pythonSpider\scrapy\Simu100')
-        # dir = 'D:\pythonSpider\scrapy\Simu100'
-        # work_path = os.path.join(dir, data)
-        # urllib.request.urlretrieve(item, work_path)
-        # extracting = zipfile.ZipFile(data)
-        # extracting.extractall('D:\pythonSpider\scrapy\Simu100')
-        # extracting.close()
-        # with zipfile.ZipFile(data) as f:
-        #     data = tf.compat.as_str(f.read(f.namelist()[0])).split()
-        #     print(data)
-        # return data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
