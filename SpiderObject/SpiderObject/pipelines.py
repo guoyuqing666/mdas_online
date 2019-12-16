@@ -69,7 +69,12 @@ class stcnPipeline(object):
 
 class SimuPipeline(object):
     def open_spider(self, spider):
-        self.fo = open('50亿以上的私募证券基金公司.csv', 'a')
+        today = datetime.date.today()
+        store_file = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d')
+        if not os.path.exists(store_file):
+            os.mkdir(store_file)
+        csv_file = store_file + '/' + today.strftime('%Y%m%d') + '_50亿以上的私募证券基金公司.csv'
+        self.fo = open(csv_file, 'a')
         data = "{},{},{}\n".format('私募基金管理人名称', '登记时间', '登记编号')
         self.fo.write(data)
 
@@ -83,7 +88,12 @@ class SimuPipeline(object):
 
 class Simu100Pipeline(object):
     def open_spider(self, spider):
-        self.fo = open('100亿以上的私募证券基金公司.csv', 'a')
+        today = datetime.date.today()
+        store_file = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d')
+        if not os.path.exists(store_file):
+            os.mkdir(store_file)
+        csv_file = store_file + '/' + today.strftime('%Y%m%d') + '_100亿以上的私募证券基金公司.csv'
+        self.fo = open(csv_file, 'a')
         data = "{},{},{}\n".format('私募基金管理人名称', '登记时间', '登记编号')
         self.fo.write(data)
 
@@ -115,7 +125,7 @@ class SimujijinPipeline(FilesPipeline):
         zip_path = FILES_STORE + '/' + self.temp_path
         print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
         print(zip_path)
-        db_file_path = FILES_STORE + '/' + '基金公司' + today.strftime('%Y%m%d')
+        db_file_path = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d')
         if not os.path.exists(db_file_path):
             os.mkdir(db_file_path)
         zip_file = zipfile.ZipFile(zip_path)
@@ -130,7 +140,7 @@ class SimujijinPipeline(FilesPipeline):
 class detailPipeline(object):
     def open_spider(self, spider):
         today = datetime.date.today()
-        store_file = FILES_STORE + '/' + '基金公司' + today.strftime('%Y%m%d') + '/' + today.strftime('%Y%m%d') + '_基金公司名称.csv'
+        store_file = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d') + '/' + today.strftime('%Y%m%d') + '_基金公司名称.csv'
         self.fo = open(store_file, 'a')
         data = "{},{}\n".format('基金名称', '基金管理人名称')
         self.fo.write(data)

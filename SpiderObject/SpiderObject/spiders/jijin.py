@@ -27,8 +27,7 @@ class SimujijinSpider(scrapy.Spider):
 
     def start_requests(self):
         today = datetime.date.today()
-        file_path = FILES_STORE + '/' + today.strftime('%Y%m%d') + '/' + self.db_file_name
-        # 'D:\\pythonSpider\\scrapy\\Simu100\\zip\\smhbase.db'
+        file_path = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d') + '/' + self.db_file_name
         file = open(file_path, 'r', encoding='utf-8')
         print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
         print(file.name)
