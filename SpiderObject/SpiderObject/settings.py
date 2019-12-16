@@ -74,6 +74,8 @@ ITEM_PIPELINES = {
     'SpiderObject.pipelines.SimuPipeline':330,
     'SpiderObject.pipelines.Simu100Pipeline':340,
     'SpiderObject.pipelines.SimujijinPipeline': 350,
+    'SpiderObject.pipelines.ZsxiazaiPipeline':360,
+    'SpiderObject.pipelines.CnstockPipeline': 370,
 
 
 }
@@ -98,3 +100,4 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+COMMANDS_MODULE = 'SpiderObject.commands'
