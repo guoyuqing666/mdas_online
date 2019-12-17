@@ -48,6 +48,10 @@ class Command(ScrapyCommand):
         print(spd_loader_list)
         #遍历各爬虫
         for spname in spd_loader_list or args:
+            if spname=="detail":
+                continue
+            if spname == "dzh":
+                continue
             self.crawler_process.crawl(spname, **opts.spargs)
             print ('此时启动的爬虫为：'+spname)
         self.crawler_process.start()
