@@ -1,4 +1,5 @@
 from scrapy import cmdline
+import os
 
 # cmdline.execute("scrapy crawlall".split())
 # cmdline.execute("scrapy crawl dzh -o dzh.csv".split())
@@ -11,9 +12,13 @@ from tkinter import *
 
 def callback():
     var.set('程序正在运行，请稍等...')
-    cmdline.execute("scrapy crawlall".split())
-    cmdline.execute("scrapy crawl dzh -o dzh.csv".split())
+    #cmdline.execute("scrapy crawlall".split())
+    #cmdline.execute("scrapy crawl dzh -o dzh.csv".split())
+    #cmdline.execute("scrapy crawl detail".split())
 
+    #os.system("scrapy crawlall -s CLOSESPIDER_TIMEOUT=120")
+    #os.system("scrapy crawl dzh -o dzh.csv")
+    os.system("scrapy crawl detail")
 
 root = Tk()
 

@@ -151,6 +151,7 @@ class detailPipeline(object):
         return item
 
     def close_spider(self, spider):
+        self.fo.flush()
         self.fo.close()
 
 
