@@ -49,7 +49,7 @@ class ZsggSpider(scrapy.Spider):
             '第一创业证券股份有限公司': '002797', '华林证券股份有限公司': '002945',
         }
         for k in map.keys():
-            yield scrapy.Request(self.baseUrl.format(c=map[k],st='2019-12-14',et=self.today),callback=self.parse)
+            yield scrapy.Request(self.baseUrl.format(c=map[k],st=self.today,et=self.today),callback=self.parse)
 
     def parse(self, response):
         page_url = 'http://xinpi.cs.com.cn/new/file/'
