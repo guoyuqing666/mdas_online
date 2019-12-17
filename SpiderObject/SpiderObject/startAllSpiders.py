@@ -16,8 +16,8 @@ def callback():
     #cmdline.execute("scrapy crawl dzh -o dzh.csv".split())
     #cmdline.execute("scrapy crawl detail".split())
 
-    #os.system("scrapy crawlall -s CLOSESPIDER_TIMEOUT=120")
-    #os.system("scrapy crawl dzh -o dzh.csv")
+    os.system("scrapy crawlall -s CLOSESPIDER_TIMEOUT=120")
+    os.system("scrapy crawl dzh -o dzh.csv")
     os.system("scrapy crawl detail")
 
 root = Tk()
