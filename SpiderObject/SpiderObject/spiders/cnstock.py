@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from ..items import CnstockItem
+from datetime import datetime, timedelta
 
 
 '''
@@ -9,7 +10,7 @@ author: rjq
 '''
 class CnstockSpider(scrapy.Spider):
     name = 'cnstock'
-    allowed_domains = ['ggjd.cnstock.com']
+    allowed_domains = ['cnstock.com']
     start_urls = ['http://ggjd.cnstock.com/company/scp_ggjd/tjd_ggkx']
     custom_settings = {
         'ITEM_PIPELINES': {'SpiderObject.pipelines.CnstockPipeline': 370}
@@ -20,12 +21,11 @@ class CnstockSpider(scrapy.Spider):
         '''
         STEP 1.获取并解析公告内容
         '''
-        # 获取当日日期                
-#        today=datetime.date.today() 
-#        oneday=datetime.timedelta(days=1) 
-#        yesterday=today-oneday 
-#        yesterDate = time.strftime('%m-%d', yesterday)
-#        print(yesterDate)
+        # 获取前一天日期
+        now = datetime.now()
+        yesterday = now - timedelta(days=1)
+        yesterdate = yesterday.strftime('%m-%d')
+        print(yesterdate)
               
         # 获取公告标题、日期、链接、内容
         announTitle = response.selector.xpath('//li/h2/a/@title').extract()
@@ -47,20 +47,20 @@ class CnstockSpider(scrapy.Spider):
             item['announDate'] = announDate[i]
             item['announLink'] = announLink[i]
             item['announContent'] = announContent[i]
-            
-#            f.write(announTitle[i]+'\n')
-#        f.close()
 
-            # 判断是否为今天
-#            if (todayDate == announDate[i].strip()):                
-            yield item
+
+            # 判断是否为昨天的公告
+            if (yesterdate == announDate[i].strip()):
+                yield item
            
-        
-        '''
-         STEP 2.翻页爬取
-        
-        '''
 
+
+
+
+        '''
+         STEP 2.翻页
+        
+        '''
 '''
 class CnstockSpider(scrapy.Spider):
     name = 'cnstock'

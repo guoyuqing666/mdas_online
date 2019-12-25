@@ -9,6 +9,7 @@ import datetime
 import os
 import time
 import csv
+from typing import TextIO
 
 import scrapy
 from scrapy.exceptions import DropItem
@@ -151,6 +152,7 @@ class detailPipeline(object):
         return item
 
     def close_spider(self, spider):
+        self.fo.flush()
         self.fo.close()
 
 
@@ -176,24 +178,36 @@ class CnstockPipeline(object):
     def __init__(self):
         today = datetime.date.today()
         store_path = os.path.dirname(__file__) + '\\cnstock\\' + today.strftime('%Y%m%d') + '\\'
-        store_file = os.path.dirname(__file__) + '\\cnstock\\' + today.strftime('%Y%m%d') + '\\' + today.strftime(
+        store_file_csv = os.path.dirname(__file__) + '\\cnstock\\' + today.strftime('%Y%m%d') + '\\' + today.strftime(
             '%Y%m%d') + '_cnstock.csv'
-        file_dir = os.path.split(store_file)[0]
-        print(file_dir)
+        store_file_txt = os.path.dirname(__file__) + '\\cnstock\\' + today.strftime('%Y%m%d') + '\\' + today.strftime(
+            '%Y%m%d') + '_cnstock.txt'
+        file_dir_csv = os.path.split(store_file_csv)[0]
 
-        if not os.path.exists(file_dir):
-            os.makedirs(file_dir)
+        print(file_dir_csv)
 
-        self.file = open(store_file, 'w')
+        if not os.path.exists(file_dir_csv):
+            os.makedirs(file_dir_csv)
+
+        self.file = open(store_file_csv, 'w')
         data = "{},{},{},{}\n".format('公告标题', '发布日期', '文章链接', '文章内容')
         self.file.write(data)
+
+        self.file1 = open(store_file_txt, 'w')
+        data_txt = "{},{}\n".format('公告标题', '文章内容')
+        self.file1.write(data_txt)
 
     def process_item(self, item, spider):
         if len(item['announContent']) > 300:
             item['announContent'] = item['announContent'][0:300].rstrip() + '...'
         self.file.write(
             "{},{},{},{}\n".format(item['announTitle'], item['announDate'], item['announLink'], item['announContent']))
+        self.file1.write(
+            "{}\n{}\n".format(item['announTitle'], item['announContent']))
+
         return item
+
+
 
     def close_spider(self, spider):
         self.file.close()
