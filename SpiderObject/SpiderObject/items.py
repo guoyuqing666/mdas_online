@@ -67,4 +67,11 @@ class detailItem(scrapy.Item):
     mngName = scrapy.Field()
 
 
+class pbItem(scrapy.Item):
+    fundsName = scrapy.Field()
+    mngName = scrapy.Field()
+    registDate = scrapy.Field()
+
+
+
 
