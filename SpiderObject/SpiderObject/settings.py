@@ -77,6 +77,7 @@ ITEM_PIPELINES = {
     'SpiderObject.pipelines.ZsxiazaiPipeline': 360,
     'SpiderObject.pipelines.CnstockPipeline': 370,
     'SpiderObject.pipelines.detailPipeline': 380,
+    'SpiderObject.pipelines.pbdetailPipeline': 390,
 
 
 }

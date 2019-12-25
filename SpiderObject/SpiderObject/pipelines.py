@@ -197,3 +197,19 @@ class CnstockPipeline(object):
 
     def close_spider(self, spider):
         self.file.close()
+
+class pbdetailPipeline(object):
+    def open_spider(self, spider):
+        today = datetime.date.today()
+        store_file = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d') + '/' + today.strftime('%Y%m%d') + '_PB公司名称.csv'
+        self.fo = open(store_file, 'a')
+        data = "{},{},{}\n".format('私募基金名称', '备案时间', 'PB证券公司')
+        self.fo.write(data)
+
+    def process_item(self, item, spider):
+        data = "{},{},{}\n".format(item['fundsName'], item['registDate'], item['mngName'])
+        self.fo.write(data)
+        return item
+
+    def close_spider(self, spider):
+        self.fo.close()
