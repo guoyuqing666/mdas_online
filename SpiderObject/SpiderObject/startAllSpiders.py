@@ -19,6 +19,7 @@ def callback():
     os.system("scrapy crawlall -s CLOSESPIDER_TIMEOUT=120")
     os.system("scrapy crawl dzh -o dzh.csv")
     os.system("scrapy crawl detail")
+    os.system("scrapy crawl pbdetail")
 
 root = Tk()
 

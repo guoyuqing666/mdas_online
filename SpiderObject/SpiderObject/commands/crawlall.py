@@ -52,6 +52,8 @@ class Command(ScrapyCommand):
                 continue
             if spname == "dzh":
                 continue
+            if spname == "pbdetail":
+                continue
             self.crawler_process.crawl(spname, **opts.spargs)
             print ('此时启动的爬虫为：'+spname)
         self.crawler_process.start()
