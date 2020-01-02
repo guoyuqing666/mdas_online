@@ -8,6 +8,7 @@
 import datetime
 import os
 import time
+import sqlite3
 import csv
 from typing import TextIO
 
@@ -137,6 +138,20 @@ class SimujijinPipeline(FilesPipeline):
         for f in zip_list:
             file = zip_file.extract(f, db_file_path)  # 循环解压文件到指定目录
         zip_file.close()  # 关闭文件，必须有，释放内存
+        store_file = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d') + '/' + today.strftime(
+            '%Y%m%d') + '_基金爬取编号.txt'
+        self.fo = open(store_file, 'a')
+        file_path = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d') + '/' + 'smhbase.db'
+        file = open(file_path, 'r', encoding='utf-8')
+        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        print(file.name)
+        conn = sqlite3.connect(file.name)
+        conn.row_factory = sqlite3.Row
+        cur = conn.cursor()
+        cur.execute('select yhcode from PRIVATE_FUNDS')
+        for row in cur:
+            data = "{}\n".format(str(row[0]))
+            self.fo.write(data)
 
 class detailPipeline(object):
     def open_spider(self, spider):

@@ -28,8 +28,6 @@ class SimujijinSpider(scrapy.Spider):
         today = datetime.date.today()
         file_path = FILES_STORE + '/' + '私募汇_' + today.strftime('%Y%m%d') + '/' + self.db_file_name
         todayyyyyyy = today.strftime('%Y-%m-%d')
-        # print(todayyyyyyy)
-        # print(datetime.date.today().strftime('%Y-%m-%d'))
         file = open(file_path, 'r', encoding='utf-8')
         print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
         print(file.name)
@@ -50,7 +48,8 @@ class SimujijinSpider(scrapy.Spider):
 
     def parse_detail(self, response):
         data = json.loads(response.text)
-        # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~获取数据啦啦啦啦啦啦啊~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print(data)
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~获取数据啦啦啦啦啦啦啊~~~~~~~~~~~~~~~~~~~~~~~~~")
         details = data['responseResults']['data']
         # print(details)
         for detail in details:
