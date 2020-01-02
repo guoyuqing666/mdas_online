@@ -60,9 +60,21 @@ class stcnPipeline(object):
         self.file.write(data)
 
     def process_item(self,item,spider):
-        if len(item['newsContent']) > 300:
-            item['newsContent'] = item['newsContent'][0:300].rstrip() + '...'
+        # if len(item['newsContent']) > 300:
+        #     item['newsContent'] = item['newsContent'][0:300].rstrip() + '...'
         self.file.write("{},{},{},{},{},{}\n".format(item['newsTitle'], item['newsDate'], item['newsLink'], item['newsContent'],item['newsClientCapture'],item['newsActionCapture']))
+
+        today = datetime.date.today()
+        essay_file = os.path.dirname(__file__) + '\\stcn\\' + today.strftime('%Y%m%d') + '\\' + 'essay'+'\\'+item['newsTitle']+'.txt'
+        essay_file_dir = os.path.split(essay_file)[0]
+        print(essay_file_dir)
+        if not os.path.exists(essay_file_dir):
+            os.makedirs(essay_file_dir)
+        fileEssay = open(essay_file, 'w')
+        fileEssay.write(item['newsContent'])
+        fileEssay.close()
+
+
         return item
 
     def close_spider(self,spider):
