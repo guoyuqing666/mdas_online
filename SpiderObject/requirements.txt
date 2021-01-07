@@ -15,7 +15,7 @@ idna==2.8
 incremental==17.5.0
 jieba==0.39
 kiwisolver==1.1.0
-lxml==4.4.2
+lxml==4.6.2
 matplotlib==3.1.0
 networkx==2.4
 numpy==1.16.4
